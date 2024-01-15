@@ -61,7 +61,7 @@ public class GameController {
     public void endDay(){
         /*FILL CODE*/
         for(Player player:players){
-
+            player
         }
     }
 
