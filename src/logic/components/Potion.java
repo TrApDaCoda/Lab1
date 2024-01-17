@@ -1,4 +1,4 @@
-package logic.component;
+package logic.components;
 
 import java.util.Objects;
 
@@ -22,7 +22,11 @@ public class Potion {
     public int hashCode() {
         return Objects.hash(name, price, increasingStatus);
     }
-
+    public Potion (String name,int price,Status increasingStatus){
+        setName(name);
+        setPrice(Math.max(1,price));
+        setIncreasingStatus(increasingStatus);
+    }
     public String getName(){
         return name;
     }
@@ -36,7 +40,7 @@ public class Potion {
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.price = Math.max(1,price);
     }
 
     public Status getIncreasingStatus() {

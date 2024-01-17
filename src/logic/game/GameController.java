@@ -4,7 +4,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import exception.BadStatusException;
-import logic.component.Status;
 import logic.components.*;
 public class GameController {
     public ArrayList<Market> markets;
@@ -61,7 +60,15 @@ public class GameController {
     public void endDay(){
         /*FILL CODE*/
         for(Player player:players){
-            player
+            if(player.getEnergy()-3 < 0){
+                try {
+                    player.getStatus().setHp(Math.max(0,(player.getStatus().getHp()-Math.abs(player.getEnergy()-3))));
+                } catch (BadStatusException e) {
+                    throw new RuntimeException(e);
+                }
+                player.setEnergy(0);
+            }
+            player.setEnergy(player.getEnergy()-3);
         }
     }
 
@@ -101,17 +108,12 @@ public class GameController {
         }
         return gameEnd;
     }
-    public static Status createNewStatus(int hp, int durable, int attack,int magic)throws BadStatusException{
+    public static Status createNewStatus(int hp, int durable, int attack,int magic){
        /*FILL CODE*/
-        if(hp < 0 || durable < 0 || attack < 0 || magic < 0){
-            return null;
-        }else{
+        try {
             return new Status(hp,durable,attack,magic);
+        } catch (BadStatusException e) {
+            return null;
         }
-//        try {
-//            return new Status(hp,durable,attack,magic);
-//        } catch (BadStatusException e) {
-//            return null;
-//        }
     }
 }

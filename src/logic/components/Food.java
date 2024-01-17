@@ -1,4 +1,4 @@
-package logic.component;
+package logic.components;
 
 import java.util.Objects;
 
@@ -18,11 +18,7 @@ public class Food {
         if(!(o instanceof Food other)){
             return false;
         }
-        if(Objects.equals(this,o)){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 
     public String getName(){
@@ -42,10 +38,10 @@ public class Food {
     }
 
     public void setPrice(int price){
-        this.price = price;
+        this.price = Math.max(1,price);
     }
 
     public void setEnergy(int energy){
-        this.energy = energy;
+        this.energy = Math.max(1,energy);
     }
 }

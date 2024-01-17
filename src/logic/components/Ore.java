@@ -1,4 +1,4 @@
-package logic.component;
+package logic.components;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,11 +15,7 @@ public class Ore {
         if(!(o instanceof Ore Other)){
             return false;
         }
-        if(Objects.equals(this,o)){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 
     @Override
@@ -40,6 +36,6 @@ public class Ore {
     }
 
     public void setCost(int cost) {
-        this.cost = cost;
+        this.cost = Math.max(cost,1);
     }
 }
