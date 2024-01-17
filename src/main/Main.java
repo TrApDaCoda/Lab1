@@ -43,15 +43,15 @@ public class Main {
                 while (!validInput) {
                     try {
                         option = scan.nextInt();
+                        while(option<0||option>16){
+                            System.out.println("Invalid option, please type your option again.");
+                            option=scan.nextInt();
+                        }
                         validInput = true; // If the conversion is successful, exit the loop
                     } catch (InputMismatchException e) {
                         System.out.println("Invalid input. Please enter a valid integer.");
                         scan.next();
                     }
-                }
-                while(option<0||option>16){
-                    System.out.println("Invalid option, please type your option again.");
-                    option=scan.nextInt();
                 }
                 if(option == 0){
                     GameController.getInstance().gameEnd=true;
